@@ -9,20 +9,21 @@
 // console.log(document.querySelector('.guess').value);
 let number = Math.trunc(Math.random() * 20) + 1;
 let score = 20;
+let message = (message) => {
+  document.querySelector(".message").textContent = message;
+};
 
 document.querySelector(".check").addEventListener("click", function () {
   const guess = Number(document.querySelector(".guess").value);
 
   // No number section
   if (!guess) {
-    console.log(
-      (document.querySelector(".message").textContent = "There is no number")
-    );
+    message("There is no number");
 
     // Player guesses the number
   } else if (guess == number) {
     document.querySelector("body").style.backgroundColor = "#298089";
-    document.querySelector(".message").textContent = "You got a number";
+    message("You got a number");
     score++;
     document.querySelector(".score").textContent = score;
     document.querySelector(".number").textContent = number;
@@ -34,11 +35,11 @@ document.querySelector(".check").addEventListener("click", function () {
   } else if (guess < number) {
     if (score > 1) {
       document.querySelector("body").style.backgroundColor = "#DD5A14";
-      document.querySelector(".message").textContent = "Too low";
+      message("Too low");
       score--;
       document.querySelector(".score").textContent = score;
     } else {
-      document.querySelector(".message").textContent = "Lost";
+      message("Lost");
       document.querySelector(".score").textContent = 0;
     }
 
@@ -46,11 +47,11 @@ document.querySelector(".check").addEventListener("click", function () {
   } else if (guess > number) {
     if (score > 1) {
       document.querySelector("body").style.backgroundColor = "#DD5A14";
-      document.querySelector(".message").textContent = "Too hight";
+      message("Too hight");
       score--;
       document.querySelector(".score").textContent = score;
     } else {
-      document.querySelector(".message").textContent = "Lost";
+      message("Lost");
       document.querySelector(".score").textContent = 0;
     }
   }
